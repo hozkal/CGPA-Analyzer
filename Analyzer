@@ -1,0 +1,14 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    if(i>3.0){
+    cout<<"Congratulations !!" <<endl;
+    }
+    else if(i>2.5){
+    cout<<"Keep trying"<<endl;
+    }
+    else { cout<<"Sorry please focus more on you study"}
+    
+    return 0;
+    }
