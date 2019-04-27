@@ -1,0 +1,68 @@
+int main()
+{
+	CalCGPA sec08[MAX];
+	int i=0;
+	string filed;
+	cout<<"Please create your file (Remember to add .txt at the end):";
+	getline(cin,filed);
+	cout<<"\n";
+	fstream infile(filed,ios::out);
+	if (!infile.is_open())
+	{
+		cout<<"File cant be opened.Please try again."<<endl;
+		return -1;
+	}
+	else
+	{
+		char* nam,*cos;
+		int x,icn,intake,currentsem;
+		float gpa;
+		string mat;
+		cout<<"Please enter the number of students you wish to enter their info:";
+		cin>>x;
+		cout<<"\n";
+		for(int i=0;i<x;i++)
+		{
+		 cout<<"Please enter the name of the student:";
+		 cin>>nam;
+		 cout<<"\n";
+		 sec08[i].setName(nam);
+		 infile<<"["<<i+1<<"]"<<"Name: "<<nam<<"\n";
+		 cout<<"Please enter the course of the designated students:";
+		 cin>>cos;
+		 cout<<"\n";
+		 sec08[i].setCourse(cos);
+		 infile<<"   "<<"Course registered:"<<cos<<"\n";
+		 cout<<"Please enter the matric id of the student:";
+		 getline(cin,mat);
+		 cout<<"\n";
+		 sec08[i].setMatric(mat);
+		 infile<<"   "<<"Matric ID:"<<mat<<"\n";
+		 cout<<"Please enter the Identification Card(IC) number of the student:";
+		 cin>>icn;
+		 cout<<"\n";
+		 sec08[i].setIc(icn);
+		 infile<<"   "<<"IC number:"<<icn<<"\n";
+		 cout<<"Please enter the intake year of the student:";
+		 cin>>intake;
+		 cout<<"\n";
+		 sec08[i].setIntake(intake);
+		 infile<<"   "<<"Intake year:"<<intake<<"\n";
+		 cout<<"Please enter the current semester of the student:";
+		cin>>currentsem;
+		 cout<<"\n";
+		 sec08[i].setCurrent(currentsem);
+		 infile<<"   "<<"Current semester:"<<currentsem<<"\n";
+			for(int i=0;i<currentsem;i++)
+			{
+				cout<<"Please add the current grade point average {GPA} for the semester"<<i+1<<" :";
+				cin>>gpa;
+				sec08[i].setGPA(gpa);
+				infile<<"   "<<"Semester "<<i+1<<"GPA"<<"intake"<<"\n";
+
+			}
+		}
+	}
+	infile.close();
+	return 0;
+}
