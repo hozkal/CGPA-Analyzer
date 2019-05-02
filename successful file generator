@@ -1,0 +1,156 @@
+#include<iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+class student 
+{
+	string matric;
+	string name;
+	char add [25];
+	string addr;
+	string city;
+	public: 
+	student()
+	{
+		
+	}
+	void getdata()
+	{
+		cout<<"\n Enter the student matric id:";
+		cin.ignore(10000,'\n');
+		getline(cin,matric);
+		cout<<"\n Enter the student name:";
+		getline(cin,name);
+		cin.ignore(10000,'\n');
+		cout<<"\n Enter the student address:";
+		getline(cin,addr);
+		cin.ignore(10000,'\n');
+		cout<<"\n Enter the student city:";
+		getline(cin,city);
+		cin.ignore(10000,'\n');
+
+	}
+	void intofile(ofstream &output)
+	{
+		output<<this->matric<<":";
+		output<<this->name<<":";
+		output<<this->addr<<":";
+		output<<this->city<<":\n";
+		
+	}
+	void outfromfile(ifstream &input)
+	{
+		
+		getline (input,matric,':');
+		cout<<matric<<"\n";
+		getline (input,name,':');
+		cout<<name<<'\n';
+		getline (input,addr,':');
+		cout<<addr<<'\n';
+		getline (input,city,':');
+		cout<<city<<'\n';
+		
+		input.close();
+	}
+
+	void putdata()
+	{
+		cout<<"\n the student matric id:"<<matric;
+		cout<<"\n the student name:"<<name;
+		cout<<"\n the student city:"<<city;
+	}
+};
+class marks: public student
+{
+	int sub1;
+	int sub2;
+	int sub3;
+	int per;
+	public: void input()
+	{
+		
+		cout<<"\n enter the marks1:";
+		cin>>sub1;
+		cout<<"\n enter the marks2:";
+		cin>>sub2;
+		cout<<"\n enter the marks3:";
+		cin>>sub3;
+	}
+	void output()
+	{
+		putdata();
+		cout<<"\n marks1:"<<sub1;
+		cout<<"\n marks2:"<<sub2;
+		cout<<"\n marks3:"<<sub3;
+	}
+	void calculate ()
+	{
+		per= (sub1+sub2+sub3)/3;
+		cout<<"\n total percentage"<<per;
+	}
+};
+ 
+int main()
+{
+	for(int i=0;i<45;i++)
+	{
+		cout<<"//";
+	}
+	string filed,outfiled;
+	cout<<"Please create your file (Any name):";
+	getline(cin,filed);
+	cout<<"\n";
+	filed.append(".txt");
+	ofstream makefile(filed);
+	
+	//makefile.close();
+	//ifstream infile(filed);
+	if (!makefile.is_open())
+	{
+		cout<<"File cant be opened.Please try again."<<endl;
+		return -1;
+	}
+	marks m1[25];
+	int ch;
+	int count=0;
+	do 
+	{
+		cout<<"\n1.Enter data";
+		cout<<"\n2.Search for data";
+		cout<<"\n3. File processor";
+		cout<<"\n4.exit";
+		cout<<"\n Please enter your input accordingly:";
+		cin>>ch;
+		switch (ch)
+		{
+			case 1:
+			m1[0].getdata();
+			m1[0].intofile(makefile);
+			m1[0].input();
+			count++;
+			break;
+ 
+            case 2:
+			m1[0].output();
+			break;
+ 
+			case 3:
+			cout<<"Enter the name of your file :";
+			cin>>outfiled;
+			cin.ignore(10000,'\n');
+			outfiled.append(".txt");
+			ifstream gototheinput(outfiled);
+			
+			//int rolling;
+			//gototheinput>>rolling;
+			//cout<<rolling<<'\n';
+			m1[0].outfromfile(gototheinput);
+			gototheinput.close();
+			//m1[0].calculate();
+			break;
+		}
+	} while (ch!=4);
+	makefile.close();
+	
+	return 0;
+}
