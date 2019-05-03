@@ -1,0 +1,58 @@
+#include<iostream>
+#include<string>
+#include<cstring>
+#include<fstream>
+using namespace std;
+
+class Student {
+	string matric;
+	string name;
+	string addr;
+	string course;
+	int current_sem;
+public:
+	string getInfo() {
+		cout << " Enter matric id: ";
+		getline(cin, matric);
+		cout << "\n Enter the student name:";
+		getline(cin, name);
+		cout << "\n Enter the student address:";
+		getline(cin, addr);
+		cout << "\n Enter the student course:";
+		getline(cin, course);
+		cout << "\n Enter the current semester for the student:";
+		cin >> current_sem;
+
+		return name + matric + addr + course ;
+
+	}
+	 
+};
+
+class Evaluate {
+protected:
+	int degree;
+	float cgpa;
+public:
+	Evaluate() : cgpa(0),degree(0) {}
+	Evaluate(float def_cgpa,int def_degree) :cgpa(def_cgpa),degree(def_degree) {}
+	virtual void evaluate() {
+		cout << "Cgpa !!!Whyyyy [- "
+			<< to_string((int)degree) << "(type of evaluation)" << endl
+		<< to_string((float)cgpa) << "(cgpa)" << endl;
+	}
+};
+
+class TopExcellent : public Evaluate {
+public:
+	TopExcellent() :Evaluate(4.0, 1) {}
+	void attack() {
+		cout << "We have nothing to teach you";
+	}
+};
+
+
+int main() {
+	Student a;
+	a.getInfo();
+	}
