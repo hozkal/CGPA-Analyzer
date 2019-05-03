@@ -1,0 +1,47 @@
+# include <iostream>
+#include <string>
+using namespace std;
+
+class Calc
+{
+private:
+	int		cred[99];
+	int		grade[99];
+	float	courseGPA[99];
+	float	courseCGPA[99];
+	float	GPA;
+	float	CGPA;
+	int		courseNum;	
+	int		totalCred;
+	float	a1;
+public:
+	Calc() : a1(0), totalCred(0) 
+	{
+		cout << "Enter The Number of Courses:  ";
+		cin >> courseNum;
+		cout << "-------------------------------------------- \n";
+	}	
+	float calcGPA()
+	{
+		for (int i = 1; i <= courseNum; i++)
+		{
+			cout << "Enter the credit hours for course " << i << ":     ";
+			cin >> cred[i];
+			cout << "Enter the grade you earned for the course \n";
+			cout << "(A = 4, B = 3, C = 2, D = 2, E = 1)              :";
+			cin >> grade[i];
+			cout << "-------------------------------------------- \n";
+			
+			courseGPA[i] = cred[i] * grade[i];
+			a1 = GPA + a1;
+			totalCred = cred[i] + totalCred;
+			GPA = a1 / totalCred;
+			//add  calc for courseCGPA n change the input method
+		}
+	}
+	
+	float calcCGPA()
+	{
+		
+	}
+};
