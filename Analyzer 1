@@ -1,0 +1,45 @@
+#include<iostream>
+#include<string>
+#include<cstring>
+#include<fstream>
+using namespace std;
+
+class Student {
+	string matric;
+	string name;
+	string addr;
+	string course;
+	int current_sem;
+public:
+	string getInfo() {
+		cout << " Enter matric id: ";
+		getline(cin, matric);
+		cout << "\n Enter the student name:";
+		getline(cin, name);
+		cout << "\n Enter the student address:";
+		getline(cin, addr);
+		cout << "\n Enter the student course:";
+		getline(cin, course);
+		cout << "\n Enter the current semester for the student:";
+		cin >> current_sem;
+
+		return name + matric + addr + course ;
+
+	}
+	 
+};
+
+class Evaluate {
+	int cgpa;
+public:
+	Evaluate() { int cgpa = 0; }
+	Evaluate(float c) {
+
+	}
+
+};
+
+int main() {
+	Student a;
+	a.getInfo();
+	}
