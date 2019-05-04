@@ -1,0 +1,86 @@
+# include <iostream>
+#include <string>
+using namespace std;
+
+class Calculation
+{
+private:
+	float	gpa;			//current sem gpa
+	float	cgpa;			//cumulative gpa from all the sem
+	float	grade[20];		//subject grade (in number i.e 60,70,80 etc;)
+	int		subCred[20];	//subject credit
+	int		subNum;			//number of subjects
+	int		semNum;			// current sem
+	string	subName[20];	// subject name
+public:
+	Calculation()
+		: gpa(0), cgpa(0), semNum(0), subNum(0) { }
+	Calculation(float igpa, float icgpa, int isemNum, int isubNum)
+		: gpa(igpa), cgpa(icgpa), semNum(isemNum), subNum(isubNum) { }
+	~Calculation()
+	{
+		cout << "Calculation Complete \n";
+	}
+
+	void	CalcGPA();
+	void	calcCGPA();
+
+	void	setGpa(float a) { gpa = a; }
+	void	setCgpa(float a) { cgpa = a; }
+	void	setSubNum(int a) { subNum = a; }
+	void	setSemNum(int a) { semNum = a; }
+
+	void		setSubName(string a[20])
+	{
+		for (int i = 0; i < subNum; i++)
+			subName[i] = a[i];
+	}
+	void		setGrade(float a[20])
+	{
+		for (int i = 0; i < subNum; i++)
+			grade[i] = a[i];
+	}
+	void		setSubCred(int a[20])
+	{
+		for (int i = 0; i < subNum; i++)
+			subCred[i] = a[i];
+	}
+
+	float	getGpa()	{ return gpa; }
+	float	getCgpa()	{ return cgpa; }
+	int		getSubNum() { return subNum; }
+	int		getSemNum() { return semNum; }
+};
+
+void Calculation::CalcGPA()
+{
+	float totalgrade = 0;
+	float totalcred = 0;
+	for (int i = 0; 1 < subNum; i++)
+	{
+		totalgrade = totalgrade + grade[i];
+		totalcred = totalcred + subCred[i];
+	}
+	gpa = totalgrade / totalcred;
+}
+
+void Calculation::calcCGPA()
+{
+	float a;
+	
+	if (cgpa == 0)
+	{
+		cout << "enter " << semNum - 1 << " semester(s) CGPA \n";
+		cin >> a;
+		cgpa = cgpa + a;
+	}
+	else
+		cgpa = cgpa + gpa;
+}
+
+int main()
+{
+	Calculation A();
+	
+	return 0;
+}
